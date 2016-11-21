@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" href="images/favicon.ico" type="image/png">
+	<title>TO'DO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--Angular 1.2.30-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.30/angular.min.js"></script>
+	<!-- Animate.css para que se mueva un poco -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts para usar iconos bien chimbitas-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Bootstrap hacerla responsive -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<!--control TO'DO para gardar las tareas -->
+	<script src="js/todo.js"></script>
+	<!--personalizar el checkbox-->
+	<!--	<link href="icheck/skins/square/green.css" rel="stylesheet">
+		<script src="icheck/icheck.js"></script>
+-->
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	</head>
+	<body>
+		<!--<script>
+		$(document).ready(function(){
+		  $('input').iCheck({
+		    checkboxClass: 'icheckbox_square-green',
+		    radioClass: 'iradio_square-green',
+		    increaseArea: '20%' // optional
+		  });
+		});
+		</script>
+	-->
+	<div class="gtco-loader"></div>
+	<div id="page">
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-xs-4">
+					<div id="gtco-logo"><a href="index.html">Welcome a To'Do.</a></div>
+				</div>
+				<div class="col-xs-8 text-center menu-1">
+					<ul>
+						<li class="active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li class="has-dropdown">
+							<a href="#">Services</a>
+							<ul class="dropdown">
+								<li><a href="#">Web Design</a></li>
+								<li><a href="#">eCommerce</a></li>
+								<li><a href="#">Testing</a></li>
+								<li><a href="#">API</a></li>
+							</ul>
+						</li>
+						<li class="has-dropdown">
+							<a href="#">Tools</a>
+							<ul class="dropdown">
+								<li><a href="#">HTML5</a></li>
+								<li><a href="#">CSS3</a></li>
+								<li><a href="#">Sass</a></li>
+								<li><a href="#">jQuery</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<header id="gtco-header" class="gtco-cover" role="banner" style="background-image:url(images/img_bg_1.jpg);">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center">
+					<div class="display-t">
+						<div class="display-tc animate-box" data-animate-effect="fadeIn">
+							<h1>To'Do</h1>
+							<p><a href="#todo" class="btn btn-default">Get Started</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="gtco-started">
+		<div class="gtco-container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					<h2 id="todo">To'Do in action</h2>
+				</div>
+			</div>
+			<div data-ng-app="" layout-align="center center">
+
+				<div data-ng-controller="TodoController" class="cuerpo">
+					<span>{{ remaining() }} Of {{ todos.length }} Remaining</span>
+					<button type="submit" data-ng-click="archive()" class="remove">Delete Task</button>
+
+							<ul class="unstyled">
+
+							 <li data-ng-repeat="todo in todos track by $index">
+
+								 <input type="checkbox" data-ng-model="todo.done" id="input{{$index}}">
+								 <label for="input{{$index}}">
+									 	{{ todo.text }}
+								 </label>
+								 <!--<span class="done-{{ todo.done }}" id="tareas">{{ todo.text }}</span>-->
+
+							 </li>
+						 </ul>
+						<div class="col-md-12">
+						<form data-ng-submit="addTodo()" class="form-inline">
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+								<input type="text" data-ng-model="todoText" class="form-control" id="task" placeholder="Add new task here" required="">
+							<br>
+							<button type="submit" class="agrega">Add Task</button>
+								</div>
+								</br>
+							</div>
+						</form>
+						</br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<footer id="gtco-footer" role="contentinfo">
+			<div class="gtco-container">
+				<div class="row row-pb-md">
+				<div class="row copyright">
+					<div class="col-md-12">
+						<p class="pull-left">
+							<small class="block">&copy; TO'DO. All Rights Reserved.</small>
+							<small class="block">Designed by Edinson Garcia</small>
+						</p>
+						<p class="pull-right">
+							<ul class="gtco-social-icons pull-right">
+								<li><a href="https://www.twitter.com/javiercho28" target="_blank"><i class="icon-twitter"></i></a></li>
+								<li><a href="https://www.facebook.com/edinson96" target="_blank"><i class="icon-facebook"></i></a></li>
+								<li><a href="https://www.github.com/edinsong" target="_blank"><i class="icon-github"></i></a></li>
+								<li><a href="http://www.instagram.com/edinsongarcia" target="_blank"><i class="icon-instagram"></i></a></li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+		</div>
+		<!--Boton que aparece al final de la pagina para subir al home-->
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- countTo -->
+	<script src="js/jquery.countTo.js"></script>
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	<!-- Main -->
+
+	<script src="js/main.js"></script>
+
+	</body>
+</html>
